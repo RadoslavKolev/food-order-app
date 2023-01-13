@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+
+import MealItemForm from '../MealItemForm/MealItemForm';
 
 import classes from './MealItem.module.css';
 
@@ -16,12 +18,12 @@ const MealItem = (props) => {
           {price}
         </div>
       </div>
-      
+
       <div>
-        
+        <MealItemForm id={props.id} />
       </div>
     </li>
-  )
-}
+  );
+};
 
-export default MealItem
+export default MealItem;
