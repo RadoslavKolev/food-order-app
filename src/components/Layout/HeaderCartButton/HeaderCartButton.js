@@ -28,9 +28,7 @@ const HeaderCartButton = (props) => {
     }, 300);
 
     // Cleanup function
-    return () => {
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, [cartContext.items]);
 
   return (
