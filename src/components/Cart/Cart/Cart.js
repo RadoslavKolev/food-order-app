@@ -9,8 +9,8 @@ import classes from './Cart.module.css';
 const Cart = (props) => {
   const cartContext = useContext(CartContext);
 
-  const totalAmount = `$${cartContext.totalAmount.toFixed(2)}`;
-  const hasItems = cartContext.items.length > 0;
+  const totalAmount = `$${cartContext.totalAmount.toFixed(2)}`; // Formatted price
+  const hasItems = cartContext.items.length > 0;  // Check if the cart has any items
 
   const cartItemAddHandler = (item) => {
     cartContext.addItem({
@@ -23,6 +23,7 @@ const Cart = (props) => {
     cartContext.removeItem(id);
   };
 
+  // List of all items in the Cart
   const cartItems = <ul className={classes['cart-items']}>
     {
       cartContext.items.map(item => (

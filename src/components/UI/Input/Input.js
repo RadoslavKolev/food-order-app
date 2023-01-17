@@ -3,7 +3,7 @@ import React from 'react';
 import classes from './Input.module.css'
 
 // We can't use refs in Custom made components
-// That's why we use React.forwardRef() and add ref to the input field
+// That's why we use React.forwardRef() and add "ref" to the input field
 const Input = React.forwardRef((props, ref) => {
   return (
     <div className={classes.input}>

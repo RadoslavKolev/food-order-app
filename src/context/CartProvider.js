@@ -7,27 +7,32 @@ const defaultCartState = {
   totalAmount: 0,
 };
 
+// Reducer function which runs when we dispatch an action in useReducer()
 const cartReducer = (prevState, action) => {
   if (action.type === 'ADD') {
     const updatedTotalAmount = 
       prevState.totalAmount + action.item.price * action.item.amount;
 
+    // Finds the first index of the item, who triggered the action
     const existingCartItemIndex = 
       prevState.items.findIndex(item => item.id === action.item.id);
 
+    // Get the item (object)
     const existingCartItem = prevState.items[existingCartItemIndex];
     let updatedItems;
 
-    // If the item exists in the cart - change its amount
     if (existingCartItem) {
+      // If the item exists in the cart - change its amount
       const updatedItem = {
         ...existingCartItem,
         amount: existingCartItem.amount + action.item.amount
       };
 
-      updatedItems=[...prevState.items];
+      // Copy the items and change the updated item via the index
+      updatedItems = [...prevState.items];
       updatedItems[existingCartItemIndex] = updatedItem;
     } else {
+      // If the item doesn't exist in the cart - add in the array
       updatedItems = prevState.items.concat(action.item);
     }
     
@@ -45,15 +50,17 @@ const cartReducer = (prevState, action) => {
 
     let updatedItems;
 
-    // If it's the last item in the Cart - remove it from the array
     if (existingItem.amount === 1) {
+      // If it's the last item in the Cart - remove it from the array
       updatedItems = prevState.items.filter(item => item.id !== action.id);
     } else {
+      // If the item occurs more than once - decrease its amount
       const updatedItem = {
         ...existingItem,
         amount: existingItem.amount - 1
       };
 
+      // Copy the items and change the updated item via the index
       updatedItems = [...prevState.items];
       updatedItems[existingCartItemIndex] = updatedItem;
     }
@@ -73,8 +80,8 @@ const CartProvider = (props) => {
 
   const addItemToCartHandler = (item) => {
     dispatchCartAction({
-      type: 'ADD',
-      item: item
+      type: 'ADD',  
+      item: item  // Object
     });
   };
 

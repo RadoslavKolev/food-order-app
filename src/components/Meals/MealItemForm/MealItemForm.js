@@ -8,11 +8,14 @@ const MealItemForm = (props) => {
   const amountInputRef = useRef();
 
   const submitHandler = (event) => {
+    // Prevents refreshing the page when submitting
     event.preventDefault();
 
+    // Gets the entered amount via "useRef()"
     const enteredAmount = amountInputRef.current.value;
-    const enteredAmountNumber = +enteredAmount;
+    const enteredAmountNumber = +enteredAmount; // Cast to number
 
+    // Validation
     if (
       enteredAmount.trim().length === 0 || 
       enteredAmountNumber < 1 || 
@@ -27,6 +30,7 @@ const MealItemForm = (props) => {
 
   return (
     <form className={classes.form} onSubmit={submitHandler}>
+      {/* "ref" property doesn't work on custom made components. It uses "forwardRef" */}
       <Input 
         ref={amountInputRef}
         label="Amount"

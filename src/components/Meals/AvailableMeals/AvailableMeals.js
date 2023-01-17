@@ -7,6 +7,7 @@ import { DUMMY_MEALS } from '../../../data/dummy-meals';
 import classes from './AvailableMeals.module.css';
 
 const AvailableMeals = () => {
+  // List of all the meals in DUMMY_MEALS
   const mealsList = DUMMY_MEALS.map(meal => (
     <MealItem 
       key={meal.id}

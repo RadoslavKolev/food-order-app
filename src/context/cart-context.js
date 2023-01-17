@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 
+// Setting the default context
 const CartContext = React.createContext({
   items: [],
   totalAmount: 0,
