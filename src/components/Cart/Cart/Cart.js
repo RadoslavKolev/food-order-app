@@ -20,7 +20,7 @@ const Cart = (props) => {
   };
 
   const cartItemRemoveHandler = (id) => {
-
+    cartContext.removeItem(id);
   };
 
   const cartItems = <ul className={classes['cart-items']}>
