@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import CartIcon from '../../Cart/CartIcon/CartIcon';
 import CartContext from '../../../context/cart-context';
@@ -6,6 +6,7 @@ import CartContext from '../../../context/cart-context';
 import classes from './HeaderCartButton.module.css';
 
 const HeaderCartButton = (props) => {
+  const [isHighlighted, setIsHighlighted] = useState(false)
   const cartContext = useContext(CartContext);
 
   // Finds the total amount of items in the cart
@@ -13,8 +14,27 @@ const HeaderCartButton = (props) => {
     return currentNumber + item.amount
   }, 0);
 
+  const btnClasses = `${classes.button} ${isHighlighted ? classes.bump : ''}`;
+
+  useEffect(() => {
+    if (cartContext.items.length === 0) {
+      return;
+    }
+
+    setIsHighlighted(true);
+
+    const timer = setTimeout(() => {
+      setIsHighlighted(false);
+    }, 300);
+
+    // Cleanup function
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [cartContext.items]);
+
   return (
-    <button className={classes.button} onClick={props.onClick}>
+    <button className={btnClasses} onClick={props.onClick}>
       <span className={classes.icon}>
         <CartIcon />
       </span>
